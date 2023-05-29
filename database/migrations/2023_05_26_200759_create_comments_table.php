@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('user');
             $table->text('content');
 
-            $table->foreignId('author_id')->index()->constrained('users')->cascadeOnDelete();
+      
             $table->timestamps();
         });
     }

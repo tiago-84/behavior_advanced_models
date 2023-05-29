@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Address;
 use Illuminate\Database\Seeder;
 
-class AdressesTableSeeder extends Seeder
+class AddressTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

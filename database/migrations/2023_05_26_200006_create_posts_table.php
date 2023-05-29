@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('subtitle');
             $table->text('description');
-            $table->foreignId('author_id')->index()->constrained('users')->cascadeOnDelete();
+            $table->unsignedInteger('author');
             $table->timestamps();
         });
     }

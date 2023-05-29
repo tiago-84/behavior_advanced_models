@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('state');
             $table->timestamps();
 
-            $table->foreignId('author_id')->index()->constrained('users')->cascadeOnDelete();
+            
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('adresses');
+        Schema::dropIfExists('addresses');
     }
 };
