@@ -58,5 +58,9 @@ class User extends Authenticatable
         return $this->hasManyThrough(Comment::class, Post::class, 'author', 'post', 'id', 'id');
 
     }
-        
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'item');
+    }
 }

@@ -54,11 +54,11 @@ class UserController extends Controller
         }
 
         $addressTest = new Address([
-            'address'=> 'Rua dos bobos 111', 
-            'number'=> '0', 
-            'complement'=> 'Apto 123', 
-            'zipcode'=> '88000-000', 
-            'city'=> 'Floripa', 
+            'address'=> 'Rua dos bobos 111',
+            'number'=> '0',
+            'complement'=> 'Apto 123',
+            'zipcode'=> '88000-000',
+            'city'=> 'Floripa',
             'state'=> 'SC'
         ]);
 
@@ -75,28 +75,28 @@ class UserController extends Controller
         //$user->addressDelivery()->saveMany([$addressTest, $address]);
 
         // $user->addressDelivery()->create([
-        //     'address'=> 'Rua dos bobos 111', 
-        //     'number'=> '0', 
-        //     'complement'=> 'Apto 123', 
-        //     'zipcode'=> '88000-000', 
-        //     'city'=> 'Floripa', 
+        //     'address'=> 'Rua dos bobos 111',
+        //     'number'=> '0',
+        //     'complement'=> 'Apto 123',
+        //     'zipcode'=> '88000-000',
+        //     'city'=> 'Floripa',
         //     'state'=> 'SC'
         // ]);
 
 
         // $user->addressDelivery()->createMany([[
-        //     'address'=> 'Rua dos bobos 333', 
-        //     'number'=> '0', 
-        //     'complement'=> 'Apto 123', 
-        //     'zipcode'=> '88000-000', 
-        //     'city'=> 'Floripa', 
+        //     'address'=> 'Rua dos bobos 333',
+        //     'number'=> '0',
+        //     'complement'=> 'Apto 123',
+        //     'zipcode'=> '88000-000',
+        //     'city'=> 'Floripa',
         //     'state'=> 'SC'
         // ], [
-        //     'address'=> 'Rua dos bobos 444', 
-        //     'number'=> '0', 
-        //     'complement'=> 'Apto 123', 
-        //     'zipcode'=> '88000-000', 
-        //     'city'=> 'Floripa', 
+        //     'address'=> 'Rua dos bobos 444',
+        //     'number'=> '0',
+        //     'complement'=> 'Apto 123',
+        //     'zipcode'=> '88000-000',
+        //     'city'=> 'Floripa',
         //     'state'=> 'SC'
         // ]]);
 
@@ -108,7 +108,7 @@ class UserController extends Controller
         if($posts){
 
             echo "<h1>Artigos</h1><br>";
-            
+
             foreach($posts as $post)
             {
             echo "#{$post->id}Titulo: {$post->title}<br>";
@@ -118,16 +118,33 @@ class UserController extends Controller
 
         }
 
-        $comments = $user->commentsOnMyPost()->get();
+        // $comments = $user->commentsOnMyPost()->get();
+
+        // if($comments){
+        //     echo "<h1>Comentários dos meus Artigos</h1>";
+
+        //     foreach($comments as $comment){
+        //         echo "Post: #{$comment->post} User: #{$comment->user} {$comment->content}<br>";
+        //     }
+        // }
+
+        $user->comments()->create([
+            'content' => 'Teste de comentario no modelode usuario'
+        ]);
+
+        $comments = $user->comments()->get();
 
         if($comments){
-            echo "<h1>Comentários dos meus Artigos</h1>";
+
+            echo "<h1>Categorias</h1><br>";
 
             foreach($comments as $comment){
-                echo "Post: #{$comment->post} User: #{$comment->user} {$comment->content}<br>";
+
+                echo "Nome do usuario: #{$comment->id} {$comment->content}<br>";
+
             }
         }
-        
+
     }
 
     /**

@@ -16,8 +16,10 @@ return new class extends Migration
             $table->unsignedInteger('post');
             $table->unsignedInteger('user');
             $table->text('content');
+            $table->morphs('item');
+            $table->dropColumn(['post', 'user']);
 
-      
+
             $table->timestamps();
         });
     }

@@ -50,6 +50,42 @@ class PostController extends Controller
             echo "Nome do usuario: {$postAuthor->name}<br>";
             echo "E-mail: {$postAuthor->email}<br>";
         }
+
+        $postCategories = $post->categories()->get();
+
+        if($postCategories){
+
+            echo "<h1>Categorias</h1><br>";
+
+            foreach($postCategories as $category){
+
+                echo "Nome do usuario: #{$category->id} {$category->name}<br>";
+
+            }
+        }
+
+        //  $post->categories()->attach([3]);
+        //  $post->categories()->detach([3]);
+        //  $post->categories()->sync([5, 10]);
+        //  $post->categories()->syncWithoutDetaching([5, 6, 7]);
+
+        // $post->comments()->create([
+        //     'content' => 'Comentario 123'
+        // ]);
+
+        $comments = $post->comments()->get();
+
+        if($comments){
+
+            echo "<h1>Categorias</h1><br>";
+
+            foreach($comments as $comment){
+
+                echo "Nome do usuario: #{$comment->id} {$comment->content}<br>";
+
+            }
+        }
+
     }
 
     /**
