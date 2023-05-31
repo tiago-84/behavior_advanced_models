@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -11,6 +12,7 @@ class Post extends Model
 
     protected $fillable = ['title', 'subtitle', 'description', 'author', 'slug'];
 
+    
     public const RELATIONSHIP_POST_CATEGORY = 'post_category';
 
     public function author()
@@ -26,6 +28,19 @@ class Post extends Model
         public function comments()
         {
             return $this->morphMany(Comment::class, 'item');
+        }
+
+        public function getCreatedFmtAttribute()
+        {
+            return date('d/m/y H:i', strtotime($this->created_at)); 
+            
+        }
+
+        public function setTitleAttribute($value)
+        {
+            $this->attributes['title'] = $value;
+            $this->attributes['slug'] = Str::slug($value);
+            
         }
 }
 

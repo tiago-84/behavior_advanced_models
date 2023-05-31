@@ -128,22 +128,54 @@ class UserController extends Controller
         //     }
         // }
 
-        $user->comments()->create([
-            'content' => 'Teste de comentario no modelode usuario'
-        ]);
+        // $user->comments()->create([
+        //     'content' => 'Teste de comentario no modelode usuario'
+        // ]);
 
-        $comments = $user->comments()->get();
+        // $comments = $user->comments()->get();
 
-        if($comments){
+        // if($comments){
 
-            echo "<h1>Categorias</h1><br>";
+        //     echo "<h1>Categorias</h1><br>";
 
-            foreach($comments as $comment){
+        //     foreach($comments as $comment){
 
-                echo "Nome do usuario: #{$comment->id} {$comment->content}<br>";
+        //         echo "Nome do usuario: #{$comment->id} {$comment->content}<br>";
+
+        //     }
+        // }
+
+        $students = User::students()->get();
+
+        if($students){
+
+            echo "<h1>Alunos</h1><br>";
+
+            foreach($students as $student){
+
+                echo "Nome do usuario: {$student->name}<br>";
+                echo "E-mail: {$student->email}<br>";    
 
             }
         }
+
+        $admins = User::admins()->get();
+
+        if($admins){
+
+            echo "<h1>Administradores</h1><br>";
+
+            foreach($admins as $admin){
+
+                echo "Nome do usuario: {$admin->name}<br>";
+                echo "E-mail: {$admin->email}<br>";    
+
+            }
+        }
+
+        $users = User::all();
+        var_dump($users->toArray());
+        var_dump($users->toJson(JSON_PRETTY_PRINT));
 
     }
 

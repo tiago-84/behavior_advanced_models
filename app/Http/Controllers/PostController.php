@@ -40,7 +40,12 @@ class PostController extends Controller
 
         echo "#{$post->id}Titulo: {$post->title}<br>";
         echo "Subtítulo: {$post->subtitle}<br>";
-        echo "Conteudo: {$post->description}<br><hr>";
+        echo "Conteudo: {$post->description}<br>";
+        echo "Data de criação: {$post->createdFmt}<br><hr>";
+
+        // $post->title = 'Titulo de teste do meu artigo!';
+        // $post->save();
+
 
         $postAuthor = $post->author()->get()->first();
 
@@ -69,15 +74,15 @@ class PostController extends Controller
         //  $post->categories()->sync([5, 10]);
         //  $post->categories()->syncWithoutDetaching([5, 6, 7]);
 
-        // $post->comments()->create([
-        //     'content' => 'Comentario 123'
-        // ]);
+        $post->comments()->create([
+            'content' => 'Comentario 123'
+        ]);
 
         $comments = $post->comments()->get();
 
         if($comments){
 
-            echo "<h1>Categorias</h1><br>";
+            echo "<h1>Comentario</h1><br>";
 
             foreach($comments as $comment){
 
@@ -85,6 +90,8 @@ class PostController extends Controller
 
             }
         }
+
+
 
     }
 
